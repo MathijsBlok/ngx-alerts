@@ -1,0 +1,28 @@
+{
+  "name": "ngx-alerts",
+  "version": "1.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MathijsBlok/ngx-alerts.git"
+  },
+  "author": {
+    "name": "Mathijs Blok",
+    "email": "info@mathijsblok.com"
+  },
+  "keywords": [
+    "angular",
+    "alerts"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MathijsBlok/ngx-alerts.git/issues"
+  },
+  "module": "ngx-alerts.js",
+  "typings": "ngx-alerts.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "@angular/animations": "^4.2.4",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}

@@ -3,50 +3,50 @@ $warning: #ff8800;
 $info: #33b5e5;
 $success: #00c851;
 
-@mixin transition($time){
+@mixin transition($time) {
   -webkit-transition: all $time ease-in-out;
   -moz-transition: all $time ease-in-out;
   -o-transition: all $time ease-in-out;
   transition: all $time ease-in-out;
 }
 
-.app-alerts{
+.app-alerts {
   position: fixed;
   top: 70px;
   right: 0;
   z-index: 99999;
 }
 
-.app-alert{
+.app-alert {
   @include transition(200ms);
   opacity: 0.8;
   margin: 5px 0;
   color: white;
   padding: 20px 30px;
 
-  &:hover{
-    opacity:1;
+  &:hover {
+    opacity: 1;
   }
 
-  &.danger{
+  &.danger {
     background-color: $danger;
   }
-  &.warning{
+  &.warning {
     background-color: $warning;
   }
-  &.info{
+  &.info {
     background-color: $info;
   }
-  &.success{
+  &.success {
     background-color: $success;
   }
 
-  .fa{
+  .fa {
     margin-right: 30px;
   }
 }
 
-.close{
+.close {
   color: white;
   margin-left: 30px;
 }

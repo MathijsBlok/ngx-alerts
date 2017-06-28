@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AlertService} from './alert.service';
 import {Alert} from './alert.class';
 import {animate, style, transition, trigger} from '@angular/animations';
-import {Observable} from 'rxjs/Observable';
+import {IntervalObservable} from 'rxjs/observable/IntervalObservable';
 
 @Component({
-    selector: 'app-msg',
+    selector: 'ngx-alerts',
     templateUrl: './alert.component.html',
     styleUrls: ['./alert.component.scss'],
     animations: [
@@ -47,7 +47,7 @@ export class AlertComponent implements OnInit {
     }
 
     startPoll() {
-        Observable.interval(1000)
+        IntervalObservable.create(1000)
             .subscribe(() => this.alerts.forEach((a, i) => this.updateAlerts(a, i)))
     }
 

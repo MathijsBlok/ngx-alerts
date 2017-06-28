@@ -1,28 +1,61 @@
-# NgxAlerts
+# ngx-alerts
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
+## Installation
 
-## Development server
+To install this library, run:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+$ npm install ngx-alerts --save
+```
 
-## Code scaffolding
+and then from your Angular `AppModule`:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-## Build
+import { AppComponent } from './app.component';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+// Import your library
+import { AlertModule } from 'ngx-alerts';
 
-## Running unit tests
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    // Specify your library as an import
+    AlertModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Running end-to-end tests
+Once your library is imported, you can use its components and service in your Angular application:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+```xml
+<!-- You can now use your library component in app.component.html -->
+<h1>
+  {{title}}
+</h1>
+<ngx-alerts></ngx-alerts>
+```
 
-## Further help
+Available functions
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+AlertService.info('this is an info alert');
+AlertService.danger('this is a danger alert');
+AlertService.success('this is a success alert');
+AlertService.warning('this is a warning alert');
+
+```
+
+
+## License
+
+MIT © [Mathijs Blok](mailto:info@mathijsblok.com)
