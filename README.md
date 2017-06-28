@@ -45,10 +45,7 @@ Once your library is imported, you can use its components and service in your An
 <ngx-alerts></ngx-alerts>
 ```
 
-Available functions
-
-```
-
+```typescript
 @Component({
     ...
 })
