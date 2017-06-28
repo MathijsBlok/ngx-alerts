@@ -1,0 +1,52 @@
+$danger: #cc0000;
+$warning: #ff8800;
+$info: #33b5e5;
+$success: #00c851;
+
+@mixin transition($time){
+  -webkit-transition: all $time ease-in-out;
+  -moz-transition: all $time ease-in-out;
+  -o-transition: all $time ease-in-out;
+  transition: all $time ease-in-out;
+}
+
+.app-alerts{
+  position: fixed;
+  top: 70px;
+  right: 0;
+  z-index: 99999;
+}
+
+.app-alert{
+  @include transition(200ms);
+  opacity: 0.8;
+  margin: 5px 0;
+  color: white;
+  padding: 20px 30px;
+
+  &:hover{
+    opacity:1;
+  }
+
+  &.danger{
+    background-color: $danger;
+  }
+  &.warning{
+    background-color: $warning;
+  }
+  &.info{
+    background-color: $info;
+  }
+  &.success{
+    background-color: $success;
+  }
+
+  .fa{
+    margin-right: 30px;
+  }
+}
+
+.close{
+  color: white;
+  margin-left: 30px;
+}

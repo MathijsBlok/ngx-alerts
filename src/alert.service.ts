@@ -1,0 +1,49 @@
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {Alert} from './alert.class';
+
+@Injectable()
+export class AlertService {
+
+    private _message: Subject<Alert> = new Subject();
+
+    public get message(): Observable<Alert>{
+        return this._message.asObservable();
+    }
+
+    public info(msg: string){
+        const message: Alert = {
+            content: msg,
+            type: 'info',
+            alive: 0
+        };
+        this._message.next(message);
+    }
+
+    public danger(msg: string){
+        const message: Alert = {
+            content: msg,
+            type: 'danger',
+            alive: 0
+        };
+        this._message.next(message);
+    }
+
+    public success(msg: string){
+        const message: Alert = {
+            content: msg,
+            type: 'success',
+            alive: 0
+        };
+        this._message.next(message);
+    }
+
+    public warning(msg: string){
+        const message: Alert = {
+            content: msg,
+            type: 'warning',
+            alive: 0
+        };
+        this._message.next(message);
+    }
+}
