@@ -1,5 +1,7 @@
 # ngx-alerts
 
+### [Live demo](http://www.mathijsblok.com/alerts-demo)
+
 ## Installation
 
 To install this library, run:
