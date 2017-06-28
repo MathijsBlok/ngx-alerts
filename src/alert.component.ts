@@ -32,7 +32,7 @@ export class AlertComponent implements OnInit {
 
     ngOnInit() {
         this.startPoll();
-        this.alertService.message.subscribe(message => this.addAlert(message));
+        this.alertService.getMessage().subscribe(message => this.addAlert(message));
     }
 
     addAlert(alert: Alert) {
@@ -48,7 +48,7 @@ export class AlertComponent implements OnInit {
 
     startPoll() {
         IntervalObservable.create(1000)
-            .subscribe(() => this.alerts.forEach((a, i) => this.updateAlerts(a, i)))
+            .subscribe(() => this.alerts.forEach((a, i) => this.updateAlerts(a, i)));
     }
 
     updateAlerts(alert: Alert, index: number) {

@@ -8,7 +8,7 @@ export class AlertService {
 
     private _message: Subject<Alert> = new Subject();
 
-    public get message(): Observable<Alert> {
+    public getMessage(): Observable<Alert> {
         return this._message.asObservable();
     }
 

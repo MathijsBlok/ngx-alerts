@@ -48,11 +48,21 @@ Once your library is imported, you can use its components and service in your An
 Available functions
 
 ```
-AlertService.info('this is an info alert');
-AlertService.danger('this is a danger alert');
-AlertService.success('this is a success alert');
-AlertService.warning('this is a warning alert');
 
+@Component({
+    ...
+})
+export class AppComponent {
+
+    constructor(private alertService: AlertService) {}
+    
+    showAlerts(): void{
+        this.alertService.info('this is an info alert');
+        this.alertService.danger('this is a danger alert');
+        this.alertService.success('this is a success alert');
+        this.alertService.warning('this is a warning alert');
+    }    
+}
 ```
 
 
