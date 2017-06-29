@@ -51,14 +51,12 @@ $success: #00c851;
       text-align: center;
 
       .icon {
-        display: block;
         color: white;
-        font-weight: lighter;
       }
     }
 
     .content {
-      padding: 15px 0;
+      padding: 25px 0;
       line-height: 20px;
       margin: auto;
       float: left;
@@ -72,10 +70,8 @@ $success: #00c851;
       text-align: center;
 
       .icon {
-        display: block;
         cursor: pointer;
         color: white;
-        font-weight: lighter;
       }
     }
   }
