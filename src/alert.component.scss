@@ -14,13 +14,17 @@ $success: #00c851;
   position: fixed;
   top: 70px;
   right: 0;
-  width: 30%;
   z-index: 99999;
 
   .app-alert {
     display: flex;
     flex-direction: row;
-    max-width: 100%;
+    flex-wrap: nowrap;
+    min-width: 200px;
+    max-width: 400px;
+    flex-basis: auto;
+    flex-grow: 1;
+
     @include transition(200ms);
     opacity: 0.8;
     margin: 5px 0;
@@ -42,13 +46,14 @@ $success: #00c851;
     }
 
     .prefix {
-      width: 40px;
+      width: 50px;
       margin: auto;
       text-align: center;
 
       .icon {
         display: block;
         color: white;
+        font-weight: lighter;
       }
     }
 
@@ -62,7 +67,7 @@ $success: #00c851;
     }
 
     .postfix {
-      width: 40px;
+      width: 50px;
       margin: auto;
       text-align: center;
 
@@ -70,6 +75,7 @@ $success: #00c851;
         display: block;
         cursor: pointer;
         color: white;
+        font-weight: lighter;
       }
     }
   }

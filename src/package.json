@@ -1,7 +1,7 @@
 {
   "name": "ngx-alerts",
   "description": "Alert service for Angular",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "repository": {
     "type": "git",
     "url": "https://github.com/MathijsBlok/ngx-alerts.git"
