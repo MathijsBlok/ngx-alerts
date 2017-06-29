@@ -14,40 +14,63 @@ $success: #00c851;
   position: fixed;
   top: 70px;
   right: 0;
+  width: 30%;
   z-index: 99999;
-}
 
-.app-alert {
-  @include transition(200ms);
-  opacity: 0.8;
-  margin: 5px 0;
-  color: white;
-  padding: 20px 30px;
+  .app-alert {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    @include transition(200ms);
+    opacity: 0.8;
+    margin: 5px 0;
 
-  &:hover {
-    opacity: 1;
-  }
+    &:hover {
+      opacity: 1;
+    }
+    &.danger {
+      background-color: $danger;
+    }
+    &.warning {
+      background-color: $warning;
+    }
+    &.info {
+      background-color: $info;
+    }
+    &.success {
+      background-color: $success;
+    }
 
-  &.danger {
-    background-color: $danger;
-  }
-  &.warning {
-    background-color: $warning;
-  }
-  &.info {
-    background-color: $info;
-  }
-  &.success {
-    background-color: $success;
-  }
+    .prefix {
+      width: 40px;
+      margin: auto;
+      text-align: center;
 
-  .prefix {
-    margin-right: 30px;
-  }
-}
+      .icon {
+        display: block;
+        color: white;
+      }
+    }
 
-.close-icon {
-  cursor: pointer;
-  color: white;
-  margin-left: 30px;
+    .content {
+      padding: 15px 0;
+      line-height: 20px;
+      margin: auto;
+      float: left;
+      width: 80%;
+      color: white;
+    }
+
+    .postfix {
+      width: 40px;
+      margin: auto;
+      text-align: center;
+
+      .icon {
+        display: block;
+        cursor: pointer;
+        color: white;
+      }
+    }
+  }
 }
