@@ -10,14 +10,14 @@ import {IntervalObservable} from 'rxjs/observable/IntervalObservable';
     styleUrls: ['./alert.component.scss'],
     animations: [
         trigger(
-            'enterAnimation', [
+            'animation', [
                 transition(':enter', [
                     style({transform: 'translateX(100%)', opacity: 0}),
-                    animate('200ms', style({transform: 'translateX(0)', opacity: 1}))
+                    animate('300ms 100ms ease', style({transform: 'translateX(0)', opacity: 0.8}))
                 ]),
                 transition(':leave', [
-                    style({transform: 'translateX(0)', opacity: 1}),
-                    animate('200ms', style({transform: 'translateX(100%)', opacity: 0.8}))
+                    style({transform: 'translateX(0)', opacity: 0.8}),
+                    animate('200ms ease-out', style({transform: 'translateX(100%)', opacity: 0}))
                 ])
             ]
         )
@@ -31,7 +31,7 @@ export class AlertComponent implements OnInit {
     maxMessages = 5;
 
     @Input()
-    lifeSpan = 5;
+    lifeSpan = 5000;
 
     @Input()
     fontAwesome = false;
@@ -56,12 +56,12 @@ export class AlertComponent implements OnInit {
     }
 
     startPoll() {
-        IntervalObservable.create(1000)
+        IntervalObservable.create(10)
             .subscribe(() => this.alerts.forEach((alert, index) => this.updateAlerts(alert, index)));
     }
 
     updateAlerts(alert: Alert, index: number) {
-        if (alert.alive >= this.lifeSpan) {
+        if (alert.alive >= (this.lifeSpan / 10)) {
             this.close(index);
         }
         alert.alive++;

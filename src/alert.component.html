@@ -1,7 +1,7 @@
 <div class="app-alerts">
     <div class="app-alert"
          [ngClass]="alert.type"
-         [@enterAnimation]="show"
+         [@animation]="show"
          *ngFor="let alert of alerts; let index = index">
 
         <i class="fa fa-info prefix" aria-hidden="true" *ngIf="(alert.type == 'info' || alert.type == 'success') && fontAwesome"></i>
@@ -12,5 +12,4 @@
         <span *ngIf="!fontAwesome" class="close-icon" (click)="close(index)">X</span>
         <i *ngIf="fontAwesome" class="fa fa-times clickable close-icon" aria-hidden="true" (click)="close(index)"></i>
     </div>
-
 </div>
