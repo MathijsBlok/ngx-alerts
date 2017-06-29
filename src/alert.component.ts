@@ -31,7 +31,7 @@ export class AlertComponent implements OnInit {
     maxMessages = 5;
 
     @Input()
-    lifeSpan = 5000;
+    timeout = 5000;
 
     @Input()
     fontAwesome = false;
@@ -61,7 +61,7 @@ export class AlertComponent implements OnInit {
     }
 
     updateAlerts(alert: Alert, index: number) {
-        if (alert.alive >= (this.lifeSpan / 10)) {
+        if (alert.alive >= (this.timeout / 10)) {
             this.close(index);
         }
         alert.alive++;

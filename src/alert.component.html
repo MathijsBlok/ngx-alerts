@@ -2,29 +2,13 @@
     <div class="app-alert"
          [ngClass]="alert.type"
          [@animation]="show"
+         (click)="close(index)"
          *ngFor="let alert of alerts; let index = index">
 
         <div class="prefix">
-            <i class="fa fa-info icon"
-               aria-hidden="true"
-               *ngIf="(alert.type == 'info' || alert.type == 'success') && fontAwesome"></i>
-            <i class="fa fa-exclamation icon"
-               aria-hidden="true"
-               *ngIf="(alert.type == 'warning' || alert.type == 'danger') && fontAwesome"></i>
-            <span *ngIf="!fontAwesome"
-                  class="icon">!</span>
         </div>
         <div class="content">
             {{alert.content}}
-        </div>
-        <div class="postfix">
-            <span *ngIf="!fontAwesome"
-                  class="icon"
-                  (click)="close(index)">X</span>
-            <i *ngIf="fontAwesome"
-               class="fa fa-times clickable icon"
-               aria-hidden="true"
-               (click)="close(index)"></i>
         </div>
     </div>
 

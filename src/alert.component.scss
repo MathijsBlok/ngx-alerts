@@ -17,6 +17,7 @@ $success: #00c851;
   z-index: 99999;
 
   .app-alert {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -34,25 +35,42 @@ $success: #00c851;
     }
     &.danger {
       background-color: $danger;
+      .prefix{
+        background: url("./icon-alert.png");
+        background-size: contain;
+        background-position: center;
+      }
     }
     &.warning {
       background-color: $warning;
+      .prefix{
+        background: url("./icon-alert.png");
+        background-size: contain;
+        background-position: center;
+      }
     }
     &.info {
       background-color: $info;
+      .prefix{
+        background: url("./icon-info.png");
+        background-size: contain;
+        background-position: center;
+      }
     }
     &.success {
       background-color: $success;
+      .prefix{
+        background: url("./icon-info.png");
+        background-size: contain;
+        background-position: center;
+      }
     }
 
     .prefix {
-      width: 50px;
       margin: auto;
       text-align: center;
-
-      .icon {
-        color: white;
-      }
+      width:30px;
+      height: 30px;
     }
 
     .content {
@@ -60,19 +78,7 @@ $success: #00c851;
       line-height: 20px;
       margin: auto;
       float: left;
-      width: 80%;
       color: white;
-    }
-
-    .postfix {
-      width: 50px;
-      margin: auto;
-      text-align: center;
-
-      .icon {
-        cursor: pointer;
-        color: white;
-      }
     }
   }
 }
