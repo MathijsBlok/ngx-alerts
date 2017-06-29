@@ -15,7 +15,9 @@
     "alerts",
     "alert",
     "message",
-    "alertservice"
+    "alertservice",
+    "angular2",
+    "notifications"
   ],
   "license": "MIT",
   "bugs": {
