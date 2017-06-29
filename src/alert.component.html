@@ -1,17 +1,16 @@
 <div class="app-alerts">
     <div class="app-alert"
-         [class.danger]="alert.type == 'danger'"
-         [class.warning]="alert.type == 'warning'"
-         [class.info]="alert.type == 'info'"
-         [class.success]="alert.type == 'success'"
+         [ngClass]="alert.type"
          [@enterAnimation]="show"
          *ngFor="let alert of alerts; let index = index">
 
-        <i class="fa fa-info" aria-hidden="true" *ngIf="alert.type == 'info' || alert.type == 'success'"></i>
-        <i class="fa fa-exclamation" aria-hidden="true" *ngIf="alert.type == 'warning' || alert.type == 'danger'"></i>
+        <i class="fa fa-info prefix" aria-hidden="true" *ngIf="(alert.type == 'info' || alert.type == 'success') && fontAwesome"></i>
+        <i class="fa fa-exclamation prefix" aria-hidden="true" *ngIf="(alert.type == 'warning' || alert.type == 'danger') && fontAwesome"></i>
+        <span *ngIf="!fontAwesome" class="prefix">!</span>
         {{alert.content}}
 
-        <i class="fa fa-times clickable close" aria-hidden="true" (click)="close(index)"></i>
+        <span *ngIf="!fontAwesome" class="close-icon" (click)="close(index)">X</span>
+        <i *ngIf="fontAwesome" class="fa fa-times clickable close-icon" aria-hidden="true" (click)="close(index)"></i>
     </div>
 
 </div>

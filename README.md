@@ -65,6 +65,17 @@ export class AppComponent {
 ```
 
 
+
+Optional properties
+
+* __maxMessages__ (Maximum number of message, default 5).
+* __lifeSpan__ (Time in seconds for messages to disappear automatically, default 5).
+* __fontAwesome__ (Whether you have font-awesome as dependency for close icon and prefix icon, default false)
+ 
+ ```xml
+ <ngx-alerts maxMessages="3" lifeSpan="10" fontAwesome="true"></ngx-alerts>
+ ````
+
 ## License
 
 MIT © [Mathijs Blok](mailto:info@mathijsblok.com)

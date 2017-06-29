@@ -41,12 +41,13 @@ $success: #00c851;
     background-color: $success;
   }
 
-  .fa {
+  .prefix {
     margin-right: 30px;
   }
 }
 
-.close {
+.close-icon {
+  cursor: pointer;
   color: white;
   margin-left: 30px;
 }

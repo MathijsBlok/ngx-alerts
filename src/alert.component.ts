@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AlertService} from './alert.service';
 import {Alert} from './alert.class';
 import {animate, style, transition, trigger} from '@angular/animations';
@@ -27,6 +27,15 @@ export class AlertComponent implements OnInit {
 
     alerts: Alert[] = [];
 
+    @Input()
+    maxMessages = 5;
+
+    @Input()
+    lifeSpan = 5;
+
+    @Input()
+    fontAwesome = false;
+
     constructor(private alertService: AlertService) {
     }
 
@@ -36,7 +45,7 @@ export class AlertComponent implements OnInit {
     }
 
     addAlert(alert: Alert) {
-        if (this.alerts.length >= 5) {
+        if (this.alerts.length >= this.maxMessages) {
             this.close(this.alerts.length - 1);
         }
         this.alerts.splice(0, 0, alert);
@@ -48,11 +57,11 @@ export class AlertComponent implements OnInit {
 
     startPoll() {
         IntervalObservable.create(1000)
-            .subscribe(() => this.alerts.forEach((a, i) => this.updateAlerts(a, i)));
+            .subscribe(() => this.alerts.forEach((alert, index) => this.updateAlerts(alert, index)));
     }
 
     updateAlerts(alert: Alert, index: number) {
-        if (alert.alive >= 5) {
+        if (alert.alive >= this.lifeSpan) {
             this.close(index);
         }
         alert.alive++;
