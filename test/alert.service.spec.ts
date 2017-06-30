@@ -1,8 +1,7 @@
 import {inject, TestBed} from '@angular/core/testing';
-import {AlertService} from '../src/alert.service';
+import {AlertService} from './alert.service';
+import {Alert} from './alert.class';
 import Jasmine = jasmine.Jasmine;
-import {Subject} from 'rxjs/Subject';
-import {Alert} from '../src/alert.class';
 
 describe('AlertService', () => {
     beforeEach(() => {
@@ -23,16 +22,12 @@ describe('AlertService', () => {
             type: 'info',
             alive: 0
         };
-        const doTest: Subject<boolean> = new Subject<boolean>();
 
         service.getMessage().subscribe(msg => {
-            doTest.subscribe(() => {
-                expect(msg).toEqual(result);
-            });
+            expect(msg).toEqual(result);
         });
 
         service.info('info');
-        doTest.next(true);
     }));
 
     it('should create danger alert', inject([AlertService], (service: AlertService) => {
@@ -41,16 +36,12 @@ describe('AlertService', () => {
             type: 'danger',
             alive: 0
         };
-        const doTest: Subject<boolean> = new Subject<boolean>();
 
         service.getMessage().subscribe(msg => {
-            doTest.subscribe(() => {
-                expect(msg).toEqual(result);
-            });
+            expect(msg).toEqual(result);
         });
 
         service.danger('danger');
-        doTest.next(true);
     }));
 
     it('should create warning alert', inject([AlertService], (service: AlertService) => {
@@ -59,16 +50,12 @@ describe('AlertService', () => {
             type: 'warning',
             alive: 0
         };
-        const doTest: Subject<boolean> = new Subject<boolean>();
 
         service.getMessage().subscribe(msg => {
-            doTest.subscribe(() => {
-                expect(msg).toEqual(result);
-            });
+            expect(msg).toEqual(result);
         });
 
         service.warning('warning');
-        doTest.next(true);
     }));
 
     it('should create danger alert', inject([AlertService], (service: AlertService) => {
@@ -77,15 +64,11 @@ describe('AlertService', () => {
             type: 'danger',
             alive: 0
         };
-        const doTest: Subject<boolean> = new Subject<boolean>();
 
         service.getMessage().subscribe(msg => {
-            doTest.subscribe(() => {
-                expect(msg).toEqual(result);
-            });
+            expect(msg).toEqual(result);
         });
 
         service.danger('danger');
-        doTest.next(true);
     }));
 });
