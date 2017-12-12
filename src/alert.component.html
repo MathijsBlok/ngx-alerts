@@ -1,7 +1,7 @@
 <div class="app-alerts">
     <div class="app-alert"
          [ngClass]="alert.type"
-         [@animation]="show"
+         [@animation]
          (click)="close(index)"
          *ngFor="let alert of alerts; let index = index">
 
