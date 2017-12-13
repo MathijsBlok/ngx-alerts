@@ -18,9 +18,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-// Import your library and the BrowserAnimationsModule for animations
+// Import your library
 import { AlertModule } from 'ngx-alerts';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,9 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
 
-    // Specify your library and the BrowserAnimationsModule as an import
-    AlertModule.forRoot(),
-    BrowserAnimationsModule
+    // Specify your library as an import
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
