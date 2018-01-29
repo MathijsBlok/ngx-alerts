@@ -18,6 +18,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+// Import BrowserAnimationsModule
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 // Import your library
 import { AlertModule } from 'ngx-alerts';
 
@@ -26,6 +29,7 @@ import { AlertModule } from 'ngx-alerts';
     AppComponent
   ],
   imports: [
+    BrowserAnimationsModule
     BrowserModule,
 
     // Specify your library as an import
