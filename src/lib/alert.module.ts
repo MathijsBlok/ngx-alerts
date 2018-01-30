@@ -1,9 +1,9 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {AlertComponent} from './alert.component';
-import {AlertService} from './alert.service';
+import {AlertComponent} from './component/alert.component';
+import {AlertService} from './service/alert.service';
 import {CommonModule} from '@angular/common';
 import {ALERT_CONFIG} from './alert.config';
-import {AlertConfig} from './alert-config.model';
+import {AlertConfig} from './model/alert-config.model';
 
 @NgModule({
     declarations: [

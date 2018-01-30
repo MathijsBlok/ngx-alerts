@@ -1,13 +1,13 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {AlertService} from './alert.service';
-import {Alert} from './alert.model';
+import {AlertService} from '../service/alert.service';
+import {Alert} from '../model/alert.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {IntervalObservable} from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/take';
 import {Subscription} from 'rxjs/Subscription';
-import {ALERT_CONFIG} from './alert.config';
-import {AlertConfig} from './alert-config.model';
+import {ALERT_CONFIG} from '../alert.config';
+import {AlertConfig} from '../model/alert-config.model';
 
 @Component({
     selector: 'ngx-alerts',
