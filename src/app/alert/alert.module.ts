@@ -1,10 +1,7 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {AlertComponent} from './alert.component';
 import {AlertService} from './alert.service';
-
-export * from './alert.component';
-export * from './alert.service';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -27,4 +24,3 @@ export class AlertModule {
         };
     }
 }
-
