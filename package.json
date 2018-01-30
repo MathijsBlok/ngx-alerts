@@ -5,12 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng-packagr -p ng-package.json",
+    "build:publish": "ng-packagr -p ng-package.json && npm publish ./dist",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "package": "ng-packagr -p ng-package.json",
-    "package:publish": "ng-packagr -p ng-package.json && npm publish ./dist"
+    "lint": "ng lint"
   },
   "private": false,
   "dependencies": {},
