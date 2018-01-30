@@ -33,13 +33,16 @@ import { AlertModule } from 'ngx-alerts';
     BrowserModule,
 
     // Specify your library as an import
-    AlertModule.forRoot()
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000})
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
+
+Import library with optional config AlertConfig. Default values are maxMessages: 5, timeout: 5000
+<br>
 
 Once your library is imported, you can use its components and service in your Angular application:
 
@@ -67,17 +70,6 @@ export class AppComponent {
     }    
 }
 ```
-
-
-
-Optional properties
-
-* __maxMessages__ (Maximum number of message, default 5).
-* __timeout__ (Time in milliseconds for messages to disappear automatically, default 5000).
- 
- ```xml
- <ngx-alerts maxMessages="3" timeout="2000"></ngx-alerts>
- ````
 
 ## License
 

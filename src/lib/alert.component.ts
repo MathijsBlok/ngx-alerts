@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {AlertService} from './alert.service';
 import {Alert} from './alert.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
@@ -6,6 +6,8 @@ import {IntervalObservable} from 'rxjs/observable/IntervalObservable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/take';
 import {Subscription} from 'rxjs/Subscription';
+import {ALERT_CONFIG} from './alert.config';
+import {AlertConfig} from './alert-config.model';
 
 @Component({
     selector: 'ngx-alerts',
@@ -29,16 +31,19 @@ export class AlertComponent implements OnInit, OnDestroy {
 
     alerts: Alert[] = [];
 
+    private maxMessages: number;
+    private timeout: number;
     private subscriptions: Subscription[] = [];
 
-    @Input() maxMessages = 5;
-    @Input() timeout = 5000;
 
-
-    constructor(private alertService: AlertService) {
+    constructor(private alertService: AlertService,
+                @Inject(ALERT_CONFIG) private config: AlertConfig) {
     }
 
     ngOnInit() {
+        this.maxMessages = !!this.config && !!this.config.maxMessages ? this.config.maxMessages : 5;
+        this.timeout = !!this.config && !!this.config.timeout ? this.config.timeout : 5000;
+
         this.startPoll();
         this.alertService.getMessage()
             .subscribe(message => this.addAlert(message));

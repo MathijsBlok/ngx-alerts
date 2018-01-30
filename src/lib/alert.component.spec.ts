@@ -4,6 +4,7 @@ import {AlertService} from './alert.service';
 import {AlertComponent} from './alert.component';
 import {Alert} from './alert.model';
 import 'rxjs/add/observable/of';
+import {ALERT_CONFIG} from './alert.config';
 
 describe('AlertComponent', () => {
     let component: AlertComponent;
@@ -15,7 +16,8 @@ describe('AlertComponent', () => {
                 AlertComponent
             ],
             providers: [
-                AlertService
+                AlertService,
+                {provide: ALERT_CONFIG, useValue: {}}
             ]
         })
             .compileComponents();
@@ -52,7 +54,7 @@ describe('AlertComponent', () => {
     });
 
     it('should add alert', () => {
-        component.maxMessages = 1;
+        component['maxMessages'] = 1;
         component.alerts = [
             {
                 content: 'danger',
@@ -98,8 +100,8 @@ describe('AlertComponent', () => {
     });
 
     it('should update timeout and close', () => {
-        component.timeout = 100;
-        component.alerts = [
+        component['timeout'] = 100;
+        component['alerts'] = [
             {
                 content: 'danger',
                 type: 'danger',
