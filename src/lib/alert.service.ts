@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Alert} from './alert.class';
+import {Alert} from './alert.model';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 

@@ -1,7 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {AlertService} from './alert.service';
-import {Alert} from './alert.class';
-import Jasmine = jasmine.Jasmine;
+import {Alert} from './alert.model';
 
 describe('AlertService', () => {
     beforeEach(() => {

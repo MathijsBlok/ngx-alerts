@@ -1,8 +1,9 @@
 import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
-import {AlertComponent} from '../src/alert.component';
-import {AlertService} from '../src/alert.service';
 import {Observable} from 'rxjs/Observable';
-import {Alert} from '../src/alert.class';
+import {AlertService} from './alert.service';
+import {AlertComponent} from './alert.component';
+import {Alert} from './alert.model';
+import 'rxjs/add/observable/of';
 
 describe('AlertComponent', () => {
     let component: AlertComponent;

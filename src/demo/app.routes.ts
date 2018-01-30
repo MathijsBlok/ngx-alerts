@@ -1,6 +1,6 @@
-import { HomeComponent } from "./pages/home/home.component";
-import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
-import { RouterModule, Route } from "@angular/router";
+import {HomeComponent} from './pages/home/home.component';
+import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
+import {Route, RouterModule} from '@angular/router';
 
 const ROUTES: Route[] = [
     {
