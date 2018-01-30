@@ -1,6 +1,6 @@
 {
   "name": "ngx-alerts",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json"
+    "package": "ng-packagr -p ng-package.json",
+    "package:publish": "ng-packagr -p ng-package.json && npm publish ./dist"
   },
   "private": false,
   "dependencies": {},
