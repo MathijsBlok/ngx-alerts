@@ -9,8 +9,10 @@ import {AlertConfig} from '../model/alert-config.model';
 export class AlertService {
 
     private _message: Subject<Alert> = new Subject();
+    private timeout: number;
 
     constructor(@Inject(ALERT_CONFIG) private config: AlertConfig){
+        this.timeout = !!this.config && !!this.config.timeout ? this.config.timeout : 5000;
     }
 
     public get message(): Observable<Alert> {
@@ -37,7 +39,7 @@ export class AlertService {
         return {
             content: msg,
             type: type,
-            alive: Observable.interval(this.config.timeout).take(1)
+            alive: Observable.interval(this.timeout).take(1)
         };
     }
 }
