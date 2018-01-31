@@ -17,11 +17,11 @@ export class AlertService {
 
     constructor(@Inject(ALERT_CONFIG) private config: AlertConfig) {
         this.initConfig();
-        this.dispatcher.scan(this.reducer, <Alert[]>[])
+        this.dispatcher.scan(this.reducer, [])
             .subscribe((state: Alert[]) => this.state.next(state));
     }
 
-    private initConfig() {
+    private initConfig(): void {
         if (!this.config) {
             this.config = {};
         }
@@ -29,31 +29,31 @@ export class AlertService {
         this.config.maxMessages = !!this.config.maxMessages ? this.config.maxMessages : 5;
     }
 
-    public get messages() {
+    public get messages(): Observable<Alert[]> {
         return this.state;
     }
 
-    public info(msg: string) {
+    public info(msg: string): void {
         this.addAlert({content: msg, type: 'info'});
     }
 
-    public danger(msg: string) {
+    public danger(msg: string): void {
         this.addAlert({content: msg, type: 'danger'});
     }
 
-    public success(msg: string) {
+    public success(msg: string): void {
         this.addAlert({content: msg, type: 'success'});
     }
 
-    public warning(msg: string) {
+    public warning(msg: string): void {
         this.addAlert({content: msg, type: 'warning'});
     }
 
-    public close(alert: Alert) {
+    public close(alert: Alert): void {
         this.dispatcher.next({type: 'DELETE', alert: alert, config: this.config});
     }
 
-    private addAlert(alert: Alert) {
+    private addAlert(alert: Alert): void {
         this.dispatcher.next({type: 'ADD', alert: alert, config: this.config});
 
         Observable.interval(this.config.timeout).take(1).subscribe(() => {
