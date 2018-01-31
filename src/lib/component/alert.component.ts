@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {AlertService} from '../service/alert.service';
 import {Alert} from '../model/alert.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'ngx-alerts',
