@@ -1,4 +1,4 @@
 export interface Alert {
     content: string;
-    type: string;
+    type: 'warning' | 'danger' | 'info' | 'success';
 }

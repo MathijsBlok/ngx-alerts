@@ -34,58 +34,23 @@ describe('AlertComponent', () => {
     });
 
     it('should init', inject([AlertService], (alertService: AlertService) => {
-        const returnValue = Observable.of({});
-
-        const getMessageSpy = spyOnProperty(alertService, 'message', 'get').and.returnValue(returnValue);
-        const observableSpy = spyOn(returnValue, 'subscribe');
+        const returnValue = Observable.of([]);
+        const getMessageSpy = spyOnProperty(alertService, 'messages', 'get').and.returnValue(returnValue);
 
         component.ngOnInit();
 
         expect(getMessageSpy).toHaveBeenCalled();
-        expect(observableSpy).toHaveBeenCalled();
+        expect(component.alerts).toEqual(returnValue);
     }));
 
-    it('should add alert', () => {
+    it('should close', inject([AlertService], (alertService: AlertService) => {
+        const closeSpy = spyOn(alertService, 'close');
         const alert: Alert = {
-            content: 'danger',
-            type: 'danger',
-            alive: Observable.interval(5000).take(1)
+            content: 'content',
+            type: 'danger'
         };
-        component.addAlert(alert);
-        expect(component.alerts).toEqual([alert]);
-    });
+        component.close(alert);
 
-    it('should add alert', () => {
-        component.maxMessages = 1;
-        component.alerts = [
-            {
-                content: 'danger',
-                type: 'danger',
-                alive: Observable.interval(5000).take(1)
-            }
-        ];
-        const alert: Alert = {
-            content: 'info',
-            type: 'info',
-            alive: Observable.interval(5000).take(1)
-        };
-        const closeSpy = spyOn(component, 'close').and.callThrough();
-
-        component.addAlert(alert);
-
-        expect(component.alerts).toEqual([alert]);
-        expect(closeSpy).toHaveBeenCalledWith(0);
-    });
-
-    it('should close alert', () => {
-        component.alerts = [
-            {
-                content: 'danger',
-                type: 'danger',
-                alive: Observable.interval(5000).take(1)
-            }
-        ];
-        component.close(0);
-        expect(component.alerts).toEqual([]);
-    });
+        expect(closeSpy).toHaveBeenCalledWith(alert);
+    }));
 });

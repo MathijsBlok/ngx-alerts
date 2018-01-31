@@ -12,47 +12,41 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class AlertService {
 
-    private dispatcher = new Subject<{ type: string, alert: Alert, config: AlertConfig }>();
-    private _messages = new BehaviorSubject<Alert[]>([]);
+    private dispatcher = new Subject<{ type: 'ADD' | 'DELETE', alert: Alert, config: AlertConfig }>();
+    private state = new BehaviorSubject<Alert[]>([]);
 
     constructor(@Inject(ALERT_CONFIG) private config: AlertConfig) {
+        this.initConfig();
+        this.dispatcher.scan(this.reducer, <Alert[]>[])
+            .subscribe((state: Alert[]) => this.state.next(state));
+    }
 
+    private initConfig() {
         if (!this.config) {
             this.config = {};
         }
         this.config.timeout = !!this.config.timeout ? this.config.timeout : 5000;
         this.config.maxMessages = !!this.config.maxMessages ? this.config.maxMessages : 5;
-
-
-        this.dispatcher.scan(this.reducer, <Alert[]>[])
-            .subscribe((state: Alert[]) => this._messages.next(state));
     }
 
     public get messages() {
-        return this._messages;
+        return this.state;
     }
 
     public info(msg: string) {
-        this.addAlert(this.createAlert(msg, 'info'));
+        this.addAlert({content: msg, type: 'info'});
     }
 
     public danger(msg: string) {
-        this.addAlert(this.createAlert(msg, 'danger'));
+        this.addAlert({content: msg, type: 'danger'});
     }
 
     public success(msg: string) {
-        this.addAlert(this.createAlert(msg, 'success'));
+        this.addAlert({content: msg, type: 'success'});
     }
 
     public warning(msg: string) {
-        this.addAlert(this.createAlert(msg, 'warning'));
-    }
-
-    private createAlert(msg: string, type: string): Alert {
-        return {
-            content: msg,
-            type: type
-        };
+        this.addAlert({content: msg, type: 'warning'});
     }
 
     public close(alert: Alert) {
@@ -67,7 +61,7 @@ export class AlertService {
         });
     }
 
-    private reducer(state: Alert[], action: { type: string, alert: Alert, config: AlertConfig }): Alert[] {
+    private reducer(state: Alert[], action: { type: 'ADD' | 'DELETE', alert: Alert, config: AlertConfig }): Alert[] {
         if (action.type === 'ADD') {
             const output = [
                 action.alert,
@@ -78,7 +72,7 @@ export class AlertService {
             }
             return output;
         } else if (action.type === 'DELETE') {
-            return state.filter(alert => alert !== action.alert)
+            return state.filter(alert => alert !== action.alert);
         }
         return state;
     }

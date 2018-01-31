@@ -18,58 +18,54 @@ describe('AlertService', () => {
     }));
 
     it('should create info alert', inject([AlertService], (service: AlertService) => {
-        const result: Alert = {
+        const result: Alert[] = [{
             content: 'info',
-            type: 'info',
-            alive: Observable.interval(5000).take(1)
-        };
-
-        service.message.subscribe(msg => {
-            expect(msg).toEqual(result);
-        });
+            type: 'info'
+        }];
 
         service.info('info');
-    }));
 
-    it('should create danger alert', inject([AlertService], (service: AlertService) => {
-        const result: Alert = {
-            content: 'danger',
-            type: 'danger',
-            alive: Observable.interval(5000).take(1)
-        };
-
-        service.message.subscribe(msg => {
+        service.messages.subscribe(msg => {
             expect(msg).toEqual(result);
         });
+    }));
 
-        service.danger('danger');
+    it('should create success alert', inject([AlertService], (service: AlertService) => {
+        const result: Alert[] = [{
+            content: 'success',
+            type: 'success'
+        }];
+
+        service.success('success');
+
+        service.messages.subscribe(msg => {
+            expect(msg).toEqual(result);
+        });
     }));
 
     it('should create warning alert', inject([AlertService], (service: AlertService) => {
-        const result: Alert = {
+        const result: Alert[] = [{
             content: 'warning',
-            type: 'warning',
-            alive: Observable.interval(5000).take(1)
-        };
-
-        service.message.subscribe(msg => {
-            expect(msg).toEqual(result);
-        });
+            type: 'warning'
+        }];
 
         service.warning('warning');
+
+        service.messages.subscribe(msg => {
+            expect(msg).toEqual(result);
+        });
     }));
 
     it('should create danger alert', inject([AlertService], (service: AlertService) => {
-        const result: Alert = {
+        const result: Alert[] = [{
             content: 'danger',
-            type: 'danger',
-            alive: Observable.interval(5000).take(1)
-        };
-
-        service.message.subscribe(msg => {
-            expect(msg).toEqual(result);
-        });
+            type: 'danger'
+        }];
 
         service.danger('danger');
+
+        service.messages.subscribe(msg => {
+            expect(msg).toEqual(result);
+        });
     }));
 });
