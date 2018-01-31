@@ -27,34 +27,24 @@ import {AlertConfig} from '../model/alert-config.model';
         )
     ]
 })
-export class AlertComponent implements OnInit, OnDestroy {
+export class AlertComponent implements OnInit {
 
     alerts: Alert[] = [];
 
     private maxMessages: number;
-    private timeout: number;
-    private subscriptions: Subscription[] = [];
-
 
     constructor(private alertService: AlertService,
                 @Inject(ALERT_CONFIG) private config: AlertConfig) {
     }
 
     ngOnInit() {
-        this.maxMessages = !!this.config && !!this.config.maxMessages ? this.config.maxMessages : 5;
-        this.timeout = !!this.config && !!this.config.timeout ? this.config.timeout : 5000;
-
-        this.startPoll();
-        this.alertService.getMessage()
+        this.alertService.message
             .subscribe(message => this.addAlert(message));
     }
 
-    ngOnDestroy(): void {
-        this.subscriptions
-            .forEach(subscription => subscription.unsubscribe());
-    }
-
     addAlert(alert: Alert) {
+        alert.alive.subscribe(() => this.onTimeout(alert));
+
         if (this.alerts.length >= this.maxMessages) {
             this.close(this.alerts.length - 1);
         }
@@ -65,16 +55,10 @@ export class AlertComponent implements OnInit, OnDestroy {
         this.alerts.splice(index, 1);
     }
 
-    startPoll() {
-        const sub = IntervalObservable.create(10)
-            .subscribe(() => this.alerts.forEach((alert, index) => this.updateAlerts(alert, index)));
-        this.subscriptions.push(sub);
-    }
-
-    updateAlerts(alert: Alert, index: number) {
-        if (alert.alive >= (this.timeout / 10)) {
+    private onTimeout(alert: Alert){
+        const index = this.alerts.indexOf(alert);
+        if(index >= 0){
             this.close(index);
         }
-        alert.alive++;
     }
 }

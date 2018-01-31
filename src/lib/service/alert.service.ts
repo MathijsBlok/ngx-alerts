@@ -1,50 +1,43 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 import {Alert} from '../model/alert.model';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
+import {ALERT_CONFIG} from '../alert.config';
+import {AlertConfig} from '../model/alert-config.model';
 
 @Injectable()
 export class AlertService {
 
     private _message: Subject<Alert> = new Subject();
 
-    public getMessage(): Observable<Alert> {
+    constructor(@Inject(ALERT_CONFIG) private config: AlertConfig){
+    }
+
+    public get message(): Observable<Alert> {
         return this._message.asObservable();
     }
 
     public info(msg: string) {
-        const message: Alert = {
-            content: msg,
-            type: 'info',
-            alive: 0
-        };
-        this._message.next(message);
+        this._message.next(this.createAlert(msg, 'info'));
     }
 
     public danger(msg: string) {
-        const message: Alert = {
-            content: msg,
-            type: 'danger',
-            alive: 0
-        };
-        this._message.next(message);
+        this._message.next(this.createAlert(msg, 'danger'));
     }
 
     public success(msg: string) {
-        const message: Alert = {
-            content: msg,
-            type: 'success',
-            alive: 0
-        };
-        this._message.next(message);
+        this._message.next(this.createAlert(msg, 'success'));
     }
 
     public warning(msg: string) {
-        const message: Alert = {
+        this._message.next(this.createAlert(msg, 'warning'));
+    }
+
+    private createAlert(msg: string, type: string): Alert {
+        return {
             content: msg,
-            type: 'warning',
-            alive: 0
+            type: type,
+            alive: Observable.interval(this.config.timeout).take(1)
         };
-        this._message.next(message);
     }
 }

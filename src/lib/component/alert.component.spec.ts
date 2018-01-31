@@ -34,38 +34,40 @@ describe('AlertComponent', () => {
     });
 
     it('should init', inject([AlertService], (alertService: AlertService) => {
-        const startPollSpy = spyOn(component, 'startPoll');
-        const getMessageSpy = spyOn(alertService, 'getMessage').and.returnValue(Observable.of({}));
+        const returnValue = Observable.of({});
+
+        const getMessageSpy = spyOnProperty(alertService, 'message', 'get').and.returnValue(returnValue);
+        const observableSpy = spyOn(returnValue, 'subscribe');
 
         component.ngOnInit();
 
-        expect(startPollSpy).toHaveBeenCalled();
         expect(getMessageSpy).toHaveBeenCalled();
+        expect(observableSpy).toHaveBeenCalled();
     }));
 
     it('should add alert', () => {
         const alert: Alert = {
             content: 'danger',
             type: 'danger',
-            alive: 0
+            alive: Observable.interval(5000).take(1)
         };
         component.addAlert(alert);
         expect(component.alerts).toEqual([alert]);
     });
 
     it('should add alert', () => {
-        component['maxMessages'] = 1;
+        component.maxMessages = 1;
         component.alerts = [
             {
                 content: 'danger',
                 type: 'danger',
-                alive: 0
+                alive: Observable.interval(5000).take(1)
             }
         ];
         const alert: Alert = {
             content: 'info',
             type: 'info',
-            alive: 0
+            alive: Observable.interval(5000).take(1)
         };
         const closeSpy = spyOn(component, 'close').and.callThrough();
 
@@ -80,38 +82,10 @@ describe('AlertComponent', () => {
             {
                 content: 'danger',
                 type: 'danger',
-                alive: 0
+                alive: Observable.interval(5000).take(1)
             }
         ];
         component.close(0);
         expect(component.alerts).toEqual([]);
-    });
-
-    it('should update timeout', () => {
-        component.alerts = [
-            {
-                content: 'danger',
-                type: 'danger',
-                alive: 0
-            }
-        ];
-        component.updateAlerts(component.alerts[0], 0);
-        expect(component.alerts[0].alive).toEqual(1);
-    });
-
-    it('should update timeout and close', () => {
-        component['timeout'] = 100;
-        component['alerts'] = [
-            {
-                content: 'danger',
-                type: 'danger',
-                alive: 10
-            }
-        ];
-        const closeSpy = spyOn(component, 'close').and.callThrough();
-
-        component.updateAlerts(component.alerts[0], 0);
-        expect(component.alerts).toEqual([]);
-        expect(closeSpy).toHaveBeenCalled();
     });
 });

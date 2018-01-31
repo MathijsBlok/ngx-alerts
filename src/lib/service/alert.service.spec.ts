@@ -1,12 +1,14 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {AlertService} from './alert.service';
 import {Alert} from '../model/alert.model';
+import {ALERT_CONFIG} from '../alert.config';
 
 describe('AlertService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                AlertService
+                AlertService,
+                {provide: ALERT_CONFIG, useValue: {maxMessages: 5, timeout: 5000}}
             ]
         });
     });
@@ -19,10 +21,10 @@ describe('AlertService', () => {
         const result: Alert = {
             content: 'info',
             type: 'info',
-            alive: 0
+            alive: Observable.interval(5000).take(1)
         };
 
-        service.getMessage().subscribe(msg => {
+        service.message.subscribe(msg => {
             expect(msg).toEqual(result);
         });
 
@@ -33,10 +35,10 @@ describe('AlertService', () => {
         const result: Alert = {
             content: 'danger',
             type: 'danger',
-            alive: 0
+            alive: Observable.interval(5000).take(1)
         };
 
-        service.getMessage().subscribe(msg => {
+        service.message.subscribe(msg => {
             expect(msg).toEqual(result);
         });
 
@@ -47,10 +49,10 @@ describe('AlertService', () => {
         const result: Alert = {
             content: 'warning',
             type: 'warning',
-            alive: 0
+            alive: Observable.interval(5000).take(1)
         };
 
-        service.getMessage().subscribe(msg => {
+        service.message.subscribe(msg => {
             expect(msg).toEqual(result);
         });
 
@@ -61,10 +63,10 @@ describe('AlertService', () => {
         const result: Alert = {
             content: 'danger',
             type: 'danger',
-            alive: 0
+            alive: Observable.interval(5000).take(1)
         };
 
-        service.getMessage().subscribe(msg => {
+        service.message.subscribe(msg => {
             expect(msg).toEqual(result);
         });
 

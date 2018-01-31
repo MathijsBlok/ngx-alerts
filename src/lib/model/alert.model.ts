@@ -1,5 +1,7 @@
+import {Observable} from "rxjs/Observable";
+
 export interface Alert {
     content: string;
-    type: 'info' | 'danger' | 'success' | 'warning';
-    alive: number;
+    type: string;
+    alive: Observable<number>;
 }
