@@ -2,8 +2,8 @@
     <div class="app-alert"
          [ngClass]="alert.type"
          [@animation]="'shown'"
-         (click)="close(index)"
-         *ngFor="let alert of alerts; let index = index">
+         (click)="close(alert)"
+         *ngFor="let alert of alerts | async; let index = index">
 
         <div class="prefix">
         </div>

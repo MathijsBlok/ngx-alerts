@@ -1,17 +1,13 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {AlertService} from '../service/alert.service';
 import {Alert} from '../model/alert.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {IntervalObservable} from 'rxjs/observable/IntervalObservable';
-import 'rxjs/add/observable/timer';
-import 'rxjs/add/operator/take';
-import {Subscription} from 'rxjs/Subscription';
-import {ALERT_CONFIG} from '../alert.config';
-import {AlertConfig} from '../model/alert-config.model';
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'ngx-alerts',
     templateUrl: './alert.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./alert.component.scss'],
     animations: [
         trigger('animation', [
@@ -29,36 +25,16 @@ import {AlertConfig} from '../model/alert-config.model';
 })
 export class AlertComponent implements OnInit {
 
-    alerts: Alert[] = [];
+    alerts: Observable<Alert[]>;
 
-    private maxMessages: number;
-
-    constructor(private alertService: AlertService,
-                @Inject(ALERT_CONFIG) private config: AlertConfig) {
+    constructor(private alertService: AlertService) {
     }
 
     ngOnInit() {
-        this.alertService.message
-            .subscribe(message => this.addAlert(message));
+        this.alerts = this.alertService.messages;
     }
 
-    addAlert(alert: Alert) {
-        alert.alive.subscribe(() => this.onTimeout(alert));
-
-        if (this.alerts.length >= this.maxMessages) {
-            this.close(this.alerts.length - 1);
-        }
-        this.alerts.splice(0, 0, alert);
-    }
-
-    close(index: number) {
-        this.alerts.splice(index, 1);
-    }
-
-    private onTimeout(alert: Alert){
-        const index = this.alerts.indexOf(alert);
-        if(index >= 0){
-            this.close(index);
-        }
+    close(alert: Alert) {
+        this.alertService.close(alert);
     }
 }
