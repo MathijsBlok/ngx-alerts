@@ -35,6 +35,7 @@ export class AlertComponent implements OnInit {
 
     constructor(private alertService: AlertService,
                 @Inject(ALERT_CONFIG) private config: AlertConfig) {
+        this.maxMessages = !!this.config && !!this.config.maxMessages ? this.config.maxMessages : 5;
     }
 
     ngOnInit() {
