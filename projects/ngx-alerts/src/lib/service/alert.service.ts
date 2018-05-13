@@ -4,16 +4,17 @@ import {BehaviorSubject, Observable, Subject, timer} from 'rxjs';
 import {ALERT_CONFIG} from '../alert.config';
 import {AlertConfig} from '../model/alert-config.model';
 import {scan, take} from 'rxjs/internal/operators';
+import {AlertReducer} from './alert.reducer';
 
 @Injectable()
 export class AlertService {
 
-  private dispatcher = new Subject<{ type: 'ADD' | 'DELETE', alert: Alert, config: AlertConfig }>();
+  private dispatcher = new Subject<{ fn: Function, alert: Alert, config: AlertConfig }>();
   private state = new BehaviorSubject<Alert[]>([]);
 
   constructor(@Inject(ALERT_CONFIG) private config: AlertConfig) {
     this.initConfig();
-    this.dispatcher.pipe(scan(this.reducer, []))
+    this.dispatcher.pipe(scan(AlertReducer.reduce, []))
       .subscribe((state: Alert[]) => this.state.next(state));
   }
 
@@ -46,32 +47,16 @@ export class AlertService {
   }
 
   public close(alert: Alert): void {
-    this.dispatcher.next({type: 'DELETE', alert: alert, config: this.config});
+    this.dispatcher.next({fn: AlertReducer.remove, alert: alert, config: this.config});
   }
 
   private addAlert(alert: Alert): void {
-    this.dispatcher.next({type: 'ADD', alert: alert, config: this.config});
+    this.dispatcher.next({fn: AlertReducer.add, alert: alert, config: this.config});
 
     timer(this.config.timeout)
       .pipe(take(1))
       .subscribe(() => {
-        this.dispatcher.next({type: 'DELETE', alert: alert, config: this.config});
+        this.dispatcher.next({fn: AlertReducer.remove, alert: alert, config: this.config});
       });
-  }
-
-  private reducer(state: Alert[], action: { type: 'ADD' | 'DELETE', alert: Alert, config: AlertConfig }): Alert[] {
-    if (action.type === 'ADD') {
-      const output = [
-        action.alert,
-        ...state
-      ];
-      if (output.length > action.config.maxMessages) {
-        output.pop();
-      }
-      return output;
-    } else if (action.type === 'DELETE') {
-      return state.filter(alert => alert !== action.alert);
-    }
-    return state;
   }
 }

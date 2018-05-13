@@ -105,7 +105,8 @@ describe('AlertService', () => {
 
     service.messages
       .pipe(
-        tap(msgs => service.close(msgs[0])),
+        take(1),
+        tap(m => service.close(m[0])),
         mergeMap(() => service.messages)
       )
       .subscribe((msgs: Alert[]) => expect(msgs).toEqual(result));
