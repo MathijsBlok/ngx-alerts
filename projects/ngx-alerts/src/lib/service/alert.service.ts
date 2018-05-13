@@ -14,8 +14,11 @@ export class AlertService {
 
   constructor(@Inject(ALERT_CONFIG) private config: AlertConfig) {
     this.initConfig();
-    this.dispatcher.pipe(scan(AlertReducer.reduce, []))
-      .subscribe((state: Alert[]) => this.state.next(state));
+    this.dispatcher
+      .pipe(
+        scan(AlertReducer.reduce, [])
+      )
+      .subscribe(this.state);
   }
 
   private initConfig(): void {
