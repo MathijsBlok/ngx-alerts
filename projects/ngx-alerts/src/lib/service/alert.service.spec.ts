@@ -1,7 +1,8 @@
 import {inject, TestBed} from '@angular/core/testing';
 import {AlertService} from './alert.service';
 import {Alert} from '../model/alert.model';
-import {AlertModule} from "../alert.module";
+import {AlertModule} from '../alert.module';
+import {mergeMap, take, tap} from 'rxjs/internal/operators';
 
 describe('AlertService', () => {
   beforeEach(() => {
@@ -24,7 +25,7 @@ describe('AlertService', () => {
 
     service.info('info');
 
-    service.messages.take(1).subscribe(msg => {
+    service.messages.pipe(take(1)).subscribe(msg => {
       expect(msg).toEqual(result);
     });
   }));
@@ -37,7 +38,7 @@ describe('AlertService', () => {
 
     service.success('success');
 
-    service.messages.take(1).subscribe(msg => {
+    service.messages.pipe(take(1)).subscribe(msg => {
       expect(msg).toEqual(result);
     });
   }));
@@ -50,7 +51,7 @@ describe('AlertService', () => {
 
     service.warning('warning');
 
-    service.messages.take(1).subscribe(msg => {
+    service.messages.pipe(take(1)).subscribe(msg => {
       expect(msg).toEqual(result);
     });
   }));
@@ -63,7 +64,7 @@ describe('AlertService', () => {
 
     service.danger('danger');
 
-    service.messages.take(1).subscribe(msg => {
+    service.messages.pipe(take(1)).subscribe(msg => {
       expect(msg).toEqual(result);
     });
   }));
@@ -78,7 +79,7 @@ describe('AlertService', () => {
     service.warning('danger');
     service.success('danger');
 
-    service.messages.take(1).subscribe(msgs => {
+    service.messages.pipe(take(1)).subscribe(msgs => {
       expect(msgs.length).toEqual(5);
     });
   }));
@@ -103,15 +104,10 @@ describe('AlertService', () => {
     service.success('danger');
 
     service.messages
-      .take(1)
-      .subscribe(msgs => {
-        service.close(msgs[0]);
-
-        service.messages
-          .take(1)
-          .subscribe(msgs => {
-            expect(msgs).toEqual(result);
-          });
-      });
+      .pipe(
+        tap(msgs => service.close(msgs[0])),
+        mergeMap(() => service.messages)
+      )
+      .subscribe((msgs: Alert[]) => expect(msgs).toEqual(result));
   }));
 });
