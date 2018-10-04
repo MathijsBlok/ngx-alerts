@@ -1,6 +1,7 @@
 import {AlertConfig} from '../model/alert-config.model';
 import {Alert} from '../model/alert.model';
 
+// @dynamic
 export class AlertReducer {
 
   public static reduce(state: Alert[], action: { fn: Function, alert: Alert, config: AlertConfig }): Alert[] {
