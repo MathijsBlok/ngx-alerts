@@ -6,7 +6,7 @@ import {AlertModule} from '../../../projects/ngx-alerts/src/lib/alert.module';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    AlertModule.forRoot(),
+    AlertModule.forRoot({position: 'left'}),
     NgbModule.forRoot()
   ]
 })

@@ -24,8 +24,15 @@ $success: #00c851;
 .app-alerts {
   position: fixed;
   top: 70px;
-  right: 0;
   z-index: 99999;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
 
   .app-alert {
     cursor: pointer;
