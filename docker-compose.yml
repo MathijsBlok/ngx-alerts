@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+
+  ngx-alerts-demo:
+    container_name: ngx-alerts-demo
+    networks:
+    - home-server-net
+    image: mathijsblok/ngx-alerts-demo:latest
+    restart: always
+    environment:
+    - VIRTUAL_HOST=demo.mathijsblok.com
+    - LETSENCRYPT_HOST=demo.mathijsblok.com
+    - LETSENCRYPT_EMAIL=info@mathijsblok.com
+    labels:
+      org.label-schema.group: "public"
+
+networks:
+  home-server-net:
+    external:
+      name: proxy_home-server-net
