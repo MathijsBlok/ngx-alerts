@@ -1,0 +1,31 @@
+image: docker:stable
+services:
+- docker:dind
+
+variables:
+  SERVICE_NAME: ngx-alerts-demo
+  IMAGE_NAME: mathijsblok/$SERVICE_NAME
+
+stages:
+- build
+- push
+- deploy
+
+build:
+  stage: build
+  image: node:8
+  script:
+  - npm install
+  - npm run build:demo
+  artifacts:
+    paths:
+    - dist/ngx-alerts-demo/
+
+push:
+  only:
+  - master
+  stage: push
+  script:
+  - docker build -t $IMAGE_NAME:$CI_BUILD_REF -t $IMAGE_NAME:latest .
+  - docker push $IMAGE_NAME:$CI_BUILD_REF
+  - docker push $IMAGE_NAME:latest

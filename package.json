@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:demo": "ng build",
     "build": "ng build ngx-alerts",
     "publish": "ng build ngx-alerts && npm publish ./dist/ngx-alerts",
     "test": "ng test",
