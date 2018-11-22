@@ -1,6 +1,6 @@
 {
   "name": "ngx-alerts",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/animations": "^7.0.0",
