@@ -1,6 +1,6 @@
 # ngx-alerts
 
-### [Live demo](http://www.mathijsblok.com/alerts-demo)
+### [Live demo](https://demo.mathijsblok.com)
 
 ## Installation
 
