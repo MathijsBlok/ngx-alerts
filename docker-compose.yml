@@ -6,7 +6,7 @@ services:
     container_name: ngx-alerts-demo
     networks:
     - home-server-net
-    image: mathijsblok/ngx-alerts-demo:latest
+    image: mathijsblok/ngx-alerts-demo
     restart: always
     environment:
     - VIRTUAL_HOST=demo.mathijsblok.com
