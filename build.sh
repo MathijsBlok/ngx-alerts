@@ -2,6 +2,7 @@
 
 npm install
 npm run build:demo
-rm -rf ./node_modules
 docker build -t mathijsblok/ngx-alerts-demo:latest .
+rm -rf ./node_modules
+rm -rf ./dist
 docker-compose up -d
