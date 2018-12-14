@@ -1,13 +1,11 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AlertModule} from '../../../projects/ngx-alerts/src/lib/alert.module';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    AlertModule.forRoot({position: 'left'}),
-    NgbModule.forRoot()
+    AlertModule.forRoot({position: 'left'})
   ]
 })
 export class CoreModule {
