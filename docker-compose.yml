@@ -12,7 +12,6 @@ services:
     - VIRTUAL_HOST=demo.mathijsblok.com
     - LETSENCRYPT_HOST=demo.mathijsblok.com
     - LETSENCRYPT_EMAIL=info@mathijsblok.com
-    - SECURED="false"
     labels:
       org.label-schema.group: "public"
 
