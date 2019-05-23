@@ -1,30 +1,28 @@
 <div class="app-alerts" [ngClass]="position">
-  <ng-container *ngIf="position == 'left'">
+  <ng-container *ngIf="position == 'left' else right">
     <div class="app-alert"
          [ngClass]="alert.type"
          [@animationLeft]="'shown'"
          (click)="close(alert)"
-         *ngFor="let alert of alerts | async; let index = index">
+         *ngFor="let alert of alerts | async">
 
       <div class="prefix">
       </div>
-      <div class="content">
-        {{alert.content}}
-      </div>
+      <div class="content" *ngIf="!alert.content.html">{{alert.content}}</div>
+      <div class="content" *ngIf="!!alert.content.html" [innerHTML]="alert.content.html"></div>
     </div>
   </ng-container>
-  <ng-container *ngIf="position == 'right'">
+  <ng-template #right>
     <div class="app-alert"
          [ngClass]="alert.type"
          [@animationRight]="'shown'"
          (click)="close(alert)"
-         *ngFor="let alert of alerts | async; let index = index">
+         *ngFor="let alert of alerts | async">
 
       <div class="prefix">
       </div>
-      <div class="content">
-        {{alert.content}}
-      </div>
+      <div class="content" *ngIf="!alert.content.html">{{alert.content}}</div>
+      <div class="content" *ngIf="!!alert.content.html" [innerHTML]="alert.content.html"></div>
     </div>
-  </ng-container>
+  </ng-template>
 </div>

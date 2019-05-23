@@ -30,22 +30,22 @@ export class AlertService {
   }
 
   public get messages(): Observable<Alert[]> {
-    return this.state;
+    return this.state.asObservable();
   }
 
-  public info(msg: string): void {
+  public info(msg: string | { html: string }): void {
     this.addAlert({content: msg, type: 'info'});
   }
 
-  public danger(msg: string): void {
+  public danger(msg: string | { html: string }): void {
     this.addAlert({content: msg, type: 'danger'});
   }
 
-  public success(msg: string): void {
+  public success(msg: string | { html: string }): void {
     this.addAlert({content: msg, type: 'success'});
   }
 
-  public warning(msg: string): void {
+  public warning(msg: string | { html: string }): void {
     this.addAlert({content: msg, type: 'warning'});
   }
 

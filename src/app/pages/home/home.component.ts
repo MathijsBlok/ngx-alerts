@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
   alert(fn: string) {
-    const msg = !!this.control.value ? this.control.value : 'some message';
+    const msg = !!this.control.value ? this.control.value : {html: '<b>some message</b>'};
     this.alertService[fn](msg);
   }
 }

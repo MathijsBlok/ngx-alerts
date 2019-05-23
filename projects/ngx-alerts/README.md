@@ -32,7 +32,7 @@ import { AlertModule } from 'ngx-alerts';
     BrowserAnimationsModule,
     BrowserModule,
 
-    // Specify your library as an import
+    // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
   ],
   providers: [],
@@ -64,10 +64,14 @@ export class AppComponent {
     constructor(private alertService: AlertService) {}
     
     showAlerts(): void{
+        // For normal messages
         this.alertService.info('this is an info alert');
         this.alertService.danger('this is a danger alert');
         this.alertService.success('this is a success alert');
         this.alertService.warning('this is a warning alert');
+        
+        // For html messages:
+        this.alertService.warning({html: '<b>This message is bold</b>'});
     }    
 }
 ```
