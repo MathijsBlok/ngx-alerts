@@ -56,10 +56,12 @@ export class AlertService {
   private addAlert(alert: Alert): void {
     this.dispatcher.next({fn: AlertReducer.add, alert: alert, config: this.config});
 
-    timer(this.config.timeout)
-      .pipe(take(1))
-      .subscribe(() => {
-        this.dispatcher.next({fn: AlertReducer.remove, alert: alert, config: this.config});
-      });
+    if (this.config.timeout > 0) {
+      timer(this.config.timeout)
+        .pipe(take(1))
+        .subscribe(() => {
+          this.dispatcher.next({fn: AlertReducer.remove, alert: alert, config: this.config});
+        });
+    }
   }
 }

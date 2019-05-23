@@ -5,7 +5,7 @@ import {AlertModule} from '../../../projects/ngx-alerts/src/lib/alert.module';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    AlertModule.forRoot({position: 'left'})
+    AlertModule.forRoot({position: 'left', timeout: -1})
   ]
 })
 export class CoreModule {
