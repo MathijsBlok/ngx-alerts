@@ -5,13 +5,14 @@ services:
   ngx-alerts-demo:
     container_name: ngx-alerts-demo
     networks:
-    - home-server-net
-    image: mathijsblok/ngx-alerts-demo
+      - home-server-net
+    build:
+      context: ./
     restart: always
     environment:
-    - VIRTUAL_HOST=demo.mathijsblok.com
-    - LETSENCRYPT_HOST=demo.mathijsblok.com
-    - LETSENCRYPT_EMAIL=info@mathijsblok.com
+      - VIRTUAL_HOST=demo.mathijsblok.com
+      - LETSENCRYPT_HOST=demo.mathijsblok.com
+      - LETSENCRYPT_EMAIL=info@mathijsblok.com
     labels:
       org.label-schema.group: "public"
 
