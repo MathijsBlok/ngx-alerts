@@ -6,8 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build:demo": "ng build --prod",
-    "build": "ng build ngx-alerts",
-    "publish": "ng build ngx-alerts && npm publish ./dist/ngx-alerts",
+    "build": "ng build ngx-alerts --prod",
+    "publish": "ng build ngx-alerts --prod && npm publish ./dist/lib",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
