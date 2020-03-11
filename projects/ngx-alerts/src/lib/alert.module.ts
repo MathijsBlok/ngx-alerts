@@ -17,7 +17,7 @@ import {AlertConfig} from './model/alert-config.model';
     ]
 })
 export class AlertModule {
-    static forRoot(config?: AlertConfig): ModuleWithProviders {
+    static forRoot(config?: AlertConfig): ModuleWithProviders<AlertModule> {
         return {
             ngModule: AlertModule,
             providers: [
