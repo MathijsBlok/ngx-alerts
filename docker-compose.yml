@@ -19,4 +19,4 @@ services:
 networks:
   home-server-net:
     external:
-      name: proxy_home-server-net
+      name: home-services_default
