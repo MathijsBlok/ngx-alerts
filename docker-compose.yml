@@ -5,7 +5,7 @@ services:
   ngx-alerts-demo:
     container_name: ngx-alerts-demo
     networks:
-      - home-server-net
+      - default
     build:
       context: ./
     restart: always
@@ -17,6 +17,7 @@ services:
       org.label-schema.group: "public"
 
 networks:
-  home-server-net:
+  default:
     external:
       name: home-services_default
+
