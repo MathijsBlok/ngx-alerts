@@ -2,7 +2,7 @@ import {inject, TestBed} from '@angular/core/testing';
 import {AlertService} from './alert.service';
 import {Alert} from '../model/alert.model';
 import {AlertModule} from '../alert.module';
-import {mergeMap, take, tap} from 'rxjs/internal/operators';
+import {mergeMap, take, tap} from 'rxjs/operators';
 
 describe('AlertService', () => {
   beforeEach(() => {

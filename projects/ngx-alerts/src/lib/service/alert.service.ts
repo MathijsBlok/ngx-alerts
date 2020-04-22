@@ -3,7 +3,7 @@ import {Alert} from '../model/alert.model';
 import {BehaviorSubject, Observable, Subject, timer} from 'rxjs';
 import {ALERT_CONFIG} from '../alert.config';
 import {AlertConfig} from '../model/alert-config.model';
-import {scan, take} from 'rxjs/internal/operators';
+import {scan, take} from 'rxjs/operators';
 import {AlertReducer} from './alert.reducer';
 
 @Injectable()
