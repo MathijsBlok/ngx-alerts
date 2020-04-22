@@ -9,12 +9,15 @@ services:
     build:
       context: ./
     restart: always
-    environment:
-      - VIRTUAL_HOST=demo.mathijsblok.com
-      - LETSENCRYPT_HOST=demo.mathijsblok.com
-      - LETSENCRYPT_EMAIL=info@mathijsblok.com
     labels:
-      org.label-schema.group: "public"
+      - "traefik.enable=true"
+      - "traefik.http.routers.ngx-alerts.rule=Host(`demo.mathijsblok.com`)"
+      - "traefik.http.routers.ngx-alerts.entrypoints=https"
+      - "traefik.http.routers.ngx-alerts.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ngx-alerts.middlewares=chain-no-auth@file"
+      - "traefik.http.routers.ngx-alerts.service=mngx-alertsb"
+      - "traefik.http.services.ngx-alerts.loadbalancer.server.port=80"
+
 
 networks:
   default:
