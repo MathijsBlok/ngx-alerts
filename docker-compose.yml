@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.ngx-alerts.entrypoints=https"
       - "traefik.http.routers.ngx-alerts.tls.certresolver=letsencrypt"
       - "traefik.http.routers.ngx-alerts.middlewares=chain-no-auth@file"
-      - "traefik.http.routers.ngx-alerts.service=mngx-alertsb"
+      - "traefik.http.routers.ngx-alerts.service=ngx-alerts"
       - "traefik.http.services.ngx-alerts.loadbalancer.server.port=80"
 
 
