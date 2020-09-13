@@ -11,7 +11,7 @@ export class AlertReducer {
   public static add(state: Alert[], params: { alert: Alert, config: AlertConfig }): Alert[] {
     const output = [
       params.alert,
-      ...state
+      ...(params.config.positionY === 'top' ? state : state.reverse())
     ];
     if (output.length > params.config.maxMessages) {
       output.pop();
