@@ -33,7 +33,7 @@ import { AlertModule } from 'ngx-alerts';
     BrowserModule,
 
     // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionX: 'right', positionY: 'top'})
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -41,8 +41,8 @@ import { AlertModule } from 'ngx-alerts';
 export class AppModule { }
 ```
 
-Import library with optional config AlertConfig. Default values are maxMessages: 5, timeout: 5000, position: 'right'.
-Where the timeout is in milliseconds, and the position cn be either left or right.
+Import library with optional config AlertConfig. Default values are maxMessages: 5, timeout: 5000, positionX: 'right', positionY: 'top'.
+Where the timeout is in milliseconds, the positionX can be either left or right and the positionY can be top or bottom.
 <br>
 
 Once your library is imported, you can use its components and service in your Angular application:

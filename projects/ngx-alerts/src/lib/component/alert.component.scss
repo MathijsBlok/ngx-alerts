@@ -23,8 +23,15 @@ $success: #00c851;
 
 .app-alerts {
   position: fixed;
-  top: 70px;
   z-index: 99999;
+
+  &.top {
+    top: 70px;
+  }
+
+  &.bottom {
+    bottom: 70px;
+  }
 
   &.left {
     left: 0;

@@ -1,5 +1,6 @@
 export interface AlertConfig {
     maxMessages?: number;
     timeout?: number;
-    position?: 'left' | 'right';
+    positionX?: 'left' | 'right';
+    positionY?: 'top' | 'bottom';
 }

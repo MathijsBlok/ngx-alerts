@@ -8,7 +8,7 @@ export class AlertReducer {
     return action.fn(state, {alert: action.alert, config: action.config});
   }
 
-  public static add(state: Alert[], params: {alert: Alert, config: AlertConfig}): Alert[] {
+  public static add(state: Alert[], params: { alert: Alert, config: AlertConfig }): Alert[] {
     const output = [
       params.alert,
       ...state
@@ -16,10 +16,10 @@ export class AlertReducer {
     if (output.length > params.config.maxMessages) {
       output.pop();
     }
-    return output;
+    return params.config.positionY === 'top' ? output : output.reverse();
   }
 
-  public static remove(state: Alert[], params: {alert: Alert, config: AlertConfig}): Alert[] {
+  public static remove(state: Alert[], params: { alert: Alert, config: AlertConfig }): Alert[] {
     return state.filter(alert => alert !== params.alert);
   }
 }

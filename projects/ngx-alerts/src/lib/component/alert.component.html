@@ -1,5 +1,5 @@
-<div class="app-alerts" [ngClass]="position">
-  <ng-container *ngIf="position == 'left' else right">
+<div class="app-alerts" [ngClass]="positionX" [ngClass]="positionY">
+  <ng-container *ngIf="positionX == 'left' else right">
     <div class="app-alert"
          [ngClass]="alert.type"
          [@animationLeft]="'shown'"

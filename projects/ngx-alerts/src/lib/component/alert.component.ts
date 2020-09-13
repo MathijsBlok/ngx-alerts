@@ -54,14 +54,19 @@ export class AlertComponent implements OnInit {
     this.alertService.close(alert);
   }
 
-  get position() {
-    return this.config.position;
+  get positionX() {
+    return this.config.positionX;
+  }
+
+  get positionY() {
+    return this.config.positionY;
   }
 
   private initConfig(): void {
     if (!this.config) {
       this.config = {};
     }
-    this.config.position = !!this.config.position ? this.config.position : 'right';
+    this.config.positionX = !!this.config.positionX ? this.config.positionX : 'right';
+    this.config.positionY = !!this.config.positionY ? this.config.positionY : 'top';
   }
 }
