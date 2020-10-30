@@ -1,11 +1,10 @@
-<div class="app-alerts" [ngClass]="positionX" [ngClass]="positionY">
+<div class="app-alerts" [ngClass]="classes">
   <ng-container *ngIf="positionX == 'left' else right">
     <div class="app-alert"
          [ngClass]="alert.type"
          [@animationLeft]="'shown'"
          (click)="close(alert)"
          *ngFor="let alert of alerts | async">
-
       <div class="prefix">
       </div>
       <div class="content" *ngIf="!alert.content.html">{{alert.content}}</div>

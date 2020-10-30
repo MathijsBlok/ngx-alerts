@@ -62,6 +62,10 @@ export class AlertComponent implements OnInit {
     return this.config.positionY;
   }
 
+  get classes() {
+    return `${this.config.positionY} ${this.config.positionX}`;
+  }
+
   private initConfig(): void {
     if (!this.config) {
       this.config = {};
