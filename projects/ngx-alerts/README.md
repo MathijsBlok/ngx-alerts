@@ -1,6 +1,7 @@
-# ngx-alerts
+# ngx-alerts (DEPRECATED)
 
-### [Live demo](https://demo.mathijsblok.com)
+USE [https://www.npmjs.com/package/@full-fledged/alerts](https://www.npmjs.com/package/@full-fledged/alerts)
+
 
 ## Installation
 
@@ -32,8 +33,8 @@ import { AlertModule } from 'ngx-alerts';
     BrowserAnimationsModule,
     BrowserModule,
 
-    // Specify your library as an import (set timeout to -1 for unlimited timeout, the message can only be closed by the user clicking on it)
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionX: 'right', positionY: 'top'})
+    // Specify your library as an import
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -41,8 +42,8 @@ import { AlertModule } from 'ngx-alerts';
 export class AppModule { }
 ```
 
-Import library with optional config AlertConfig. Default values are maxMessages: 5, timeout: 5000, positionX: 'right', positionY: 'top'.
-Where the timeout is in milliseconds, the positionX can be either left or right and the positionY can be top or bottom.
+Import library with optional config AlertConfig. Default values are maxMessages: 5, timeout: 5000, position: 'right'.
+Where the timeout is in milliseconds, and the position cn be either left or right.
 <br>
 
 Once your library is imported, you can use its components and service in your Angular application:
@@ -64,14 +65,10 @@ export class AppComponent {
     constructor(private alertService: AlertService) {}
     
     showAlerts(): void{
-        // For normal messages
         this.alertService.info('this is an info alert');
         this.alertService.danger('this is a danger alert');
         this.alertService.success('this is a success alert');
         this.alertService.warning('this is a warning alert');
-        
-        // For html messages:
-        this.alertService.warning({html: '<b>This message is bold</b>'});
     }    
 }
 ```

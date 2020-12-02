@@ -1,6 +1,7 @@
-# ngx-alerts
+# ngx-alerts (DEPRECATED)
 
-### [Live demo](https://demo.mathijsblok.com)
+USE [https://www.npmjs.com/package/@full-fledged/alerts](https://www.npmjs.com/package/@full-fledged/alerts)
+
 
 ## Installation
 
